@@ -40,17 +40,6 @@ function easymag_widgets_init() {
         'after_title'   => '</h2>',
     ) );
 
-    // Register Header Ads 728x90
-    register_sidebar( array(
-        'name'          => __( 'Header Ads 728x90', 'easymag' ),
-        'id'            => 'dt-header-ads728x90',
-        'description'   => __( 'Shows Advertisement at header position beside logo', 'easymag' ),
-        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h2 class="widget-title">',
-        'after_title'   => '</h2>',
-    ) );
-
     // Register News Ticker
     register_sidebar( array(
         'name'          => __( 'News Ticker Position', 'easymag' ),
@@ -138,6 +127,31 @@ function easymag_widgets_init() {
         'before_title'  => '<h2 class="widget-title">',
         'after_title'   => '</h2>',
     ) );
+
+
+    // Register Header Ads 728x90
+    register_sidebar( array(
+        'name'          => __( 'Header Ads 728x90', 'easymag' ),
+        'id'            => 'dt-header-ads728x90',
+        'description'   => __( 'Shows Advertisement at header position beside logo', 'easymag' ),
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
+
+
+    // Register Content Footer Ads responsive
+    register_sidebar( array(
+        'name'          => __( 'Content Footer Ads responsive', 'easymag' ),
+        'id'            => 'dt-content-ads-responsive',
+        'description'   => __( 'Shows Advertisement at content end position', 'easymag' ),
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
+
 }
 add_action( 'widgets_init', 'easymag_widgets_init' );
 

@@ -28,6 +28,8 @@
 		?>
 	</div><!-- .entry-content -->
 
+	<?php dynamic_sidebar( 'dt-content-ads-responsive' ); ?>
+
 	<footer class="entry-footer">
 		<?php easymag_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
