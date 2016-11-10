@@ -1,0 +1,293 @@
+/*-------------------------------------------------------------------------- 
+ * MSTW Bracket Builder  Stylesheet [mstw_sb-styles.css]  
+ *
+ *	MSTW WordPress Plugins (http://shoalsummitsolutions.com)
+ *	Copyright 2016 Mark O'Donnell (mark@shoalsummitsolutions.com)
+ *
+ *	This program is provided AS-IS WITHOUT ANY WARRANTY; without even the 
+ *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *--------------------------------------------------------------------------*/
+
+/*
+ *   Bracket lines between games;  these are really background
+ */
+	
+div.relative {
+	position: relative;
+}
+
+div.bracket-lines-1,
+div.bracket-lines-2,
+div.bracket-lines-3,
+div.bracket-lines-4,
+div.bracket-lines-5 
+{
+	z-index:     1;
+	position:    absolute;
+	left:        85px;
+	border:      1px solid #ccc;
+	border-left: none;
+	top: 43px;
+	
+}
+	
+div.bracket-lines-1 {
+	/*top:         43px;*/
+	height:      176px;
+	width:       215px;
+}
+
+div.bracket-lines-2 {
+	/*top:         43px;*/
+	height:      274px;
+	width:       180px;
+}
+
+div.bracket-lines-3 {
+	/*top:         43px;*/
+	height:      551px;
+	width:       160px;
+}
+
+div.bracket-lines-4 {
+	/*top:         43px;*/
+	height:      1096px;
+	width:       130px;
+}
+
+div.bracket-lines-5 {
+	/*top:         43px;*/
+	height:      2208px;
+	width:       130px;
+}
+
+/*
+ *   Rounds
+ */
+
+.mstw_tournament_bracket .round {
+	float:        left;
+	margin-right: 0px;
+	margin-left:  10px;
+	width:        210px;
+    }
+	
+.mstw_tournament_bracket .round_header {
+	text-align: center;
+}
+
+/* 
+ *  GAMES - layout
+ */
+
+/* All games */
+
+.mstw_tournament_bracket li.game {
+	position: relative;
+	z-index: 2;
+	
+}
+
+/* for some themes that mess with <ul> rules */
+.mstw_tournament_bracket ul.round-games.round_1 {
+	margin-left: 0;
+}
+
+/* Round 1 games */
+
+.mstw_tournament_bracket ul.round_1 li.game {
+	/*background-color: #fff;*/
+	margin-top:       10px;
+	margin-bottom:    10px;
+}
+
+/* Round 2 games */
+
+.mstw_tournament_bracket ul.round_2 {
+	margin-top: 96px;
+}
+	
+.mstw_tournament_bracket ul.round_2 li.game {
+	margin-bottom: 147.5px;
+	}
+
+/* Round 3 games */
+	
+.mstw_tournament_bracket .round_3 {
+	margin-left: -60px;
+}
+
+.mstw_tournament_bracket ul.round_3 {
+	margin-top: 234px; /* 187*2 */
+}
+
+.mstw_tournament_bracket ul.round_3 li.game {
+	margin-bottom: 423px;
+}
+
+/* Round 4 games */
+
+.mstw_tournament_bracket .round_4 {
+	margin-left: -80px;
+}
+
+.mstw_tournament_bracket ul.round_4 {
+	margin-top: 510px; /* 187*2 */
+}
+
+.mstw_tournament_bracket ul.round_4 li.game {
+	/*margin-top:    126px;*/
+	margin-bottom: 970px;
+}
+
+/* Round 5 games */
+
+.mstw_tournament_bracket .round_5 {
+	margin-left: -80px;
+}
+
+.mstw_tournament_bracket ul.round_5 {
+	margin-top: 1060px; /* 187*2 */
+}
+
+.mstw_tournament_bracket ul.round_5 li.game {
+	/*margin-top:    126px;*/
+	margin-bottom: 2080px;
+}
+
+/* Round 6 games */
+
+.mstw_tournament_bracket .round_6 {
+	margin-left: -100px;
+}
+
+.mstw_tournament_bracket ul.round_6 {
+	margin-top: 2160px; /* 187*2 */
+}
+
+
+/* Keeps margins off bottom of bracket for next element spacing */
+.mstw_tournament_bracket ul.round_1 li.game.last_game,
+.mstw_tournament_bracket ul.round_2 li.game.last_game,
+.mstw_tournament_bracket ul.round_3 li.game.last_game,
+.mstw_tournament_bracket ul.round_4 li.game.last_game,
+.mstw_tournament_bracket ul.round_5 li.game.last_game,
+.mstw_tournament_bracket ul.round_6 li.game.last_game 
+{
+    margin-bottom: 0;
+}
+
+/* 
+ *  GAMES - block styling
+ */
+
+.mstw_tournament_bracket ul.round_games,
+.mstw_tournament_bracket ul.game {
+	list-style: none;
+	/* For themes that mess with <ul>  */
+	margin-left:    0;
+	}
+	
+.mstw_tournament_bracket ul.round_games li,
+.mstw_tournament_bracket ul.game li {
+	margin-left:  0;
+	padding-left: 0;
+	}
+
+.mstw_tournament_bracket li.game {
+	background-color: #fff;
+	width:            200px;
+	height:           126px;
+	border:           solid lightgray 1px;
+	position:         relative;
+	}
+	
+.mstw_tournament_bracket ul.game li {
+	color:       navy;
+	line-height: 28px;
+	font-size:   12px;
+	font-family: sans-serif;
+	padding:     5px;
+	overflow:    hidden;
+	white-space: nowrap;
+    }
+	
+.mstw_tournament_bracket ul.game li.game_status,
+.mstw_tournament_bracket ul.game li.game_location {
+	line-height: 14px;
+
+}
+	
+.mstw_tournament_bracket .game_score {
+	float:       right;
+	line-height: 28px;
+}
+
+	
+/* Game block line styles */
+
+.mstw_tournament_bracket ul.game li.game_home,
+.mstw_tournament_bracket ul.game li.game_away {
+	background-color: #e9e9e9;
+}
+
+.mstw_tournament_bracket ul.game li.game_home {
+	margin-bottom: 2px;
+}
+
+.mstw_tournament_bracket ul.game li.game_home.winner,
+.mstw_tournament_bracket ul.game li.game_away.winner {
+	font-weight: bold;
+}
+
+.mstw_tournament_bracket ul.game li.game_status {
+	background-color: gray;
+	color:            white;
+}
+	
+
+
+.mstw_tournament_bracket img.team-logo,
+.mstw_tournament_table img.team-logo {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.mstw_tournament_table img.team-logo-right {
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/*
+ *    TOURNAMENT TABLES
+ */
+.mstw_tournament_table .round_header {
+	background-color: gray;
+	color:            white;
+}
+	
+.mstw_tournament_table tr.round_header td {
+	padding-left:  5px;
+}
+
+.mstw_tournament_table tr.table_headers td.nbr_title
+{
+	text-align: center;
+}
+
+.mstw_tournament_table tr td.game_nbr {
+	text-align: center;
+}
+
+.mstw_tournament_table tbody tr:nth-child(even) {
+	background: #FFF;
+}
+
+.mstw_tournament_table tbody tr:nth-child(odd) {
+	background: #EEE;
+}
+
+
+	
+
+	

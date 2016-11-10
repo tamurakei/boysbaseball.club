@@ -1,0 +1,135 @@
+/*-------------------------------------------------------------------------- 
+ * MSTW bracket Builder Admin Stylesheet [mstw_sb-admin_styles.css]  
+ *
+ *	MSTW WordPress Plugins (http://shoalsummitsolutions.com)
+ *	Copyright 2016 Mark O'Donnell (mark@shoalsummitsolutions.com)
+ *
+ *	This program is provided AS-IS WITHOUT ANY WARRANTY; without even the 
+ *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *--------------------------------------------------------------------------*/
+table.mstw-bb-admin-table {
+	/*margin-left: 20px;*/
+	margin-top:  0;
+	border-left: 0;
+	background-color: #f1f1f1;
+}
+
+table.mstw-bb-admin-table th.right {
+	text-align: right;
+	}
+	
+.mstw-bb-admin-table td.row-head,
+.mstw-bb-admin-table thead tr th {
+	font-weight: 600;
+}
+
+table.mstw-bb-admin-table .col-indent-1 {
+	margin-left: 20px;
+}
+ 
+/* adjust the columns that aren't the leftmost column in the form table */  
+th.mstw-admin-align-right,
+td.mstw-admin-align-right {
+    text-align: right;
+	}
+	
+/* this is for control titles at the top of tables */
+div.mstw-bb-controls {
+	padding-bottom: 10px;
+}
+
+span.mstw-bb-control-title,  span.mstw-bb-control-title-2 {
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+/* want space on the right of the first control */
+span.mstw-bb-control-title-2 {
+    padding-left: 10px;
+}
+
+.mstw-bb-admin-instructions {
+    /* font-weight:   bold; */
+	font-weight:   normal;
+	font-size:     13px;
+	font-style:    italic;
+    color:         #F00;
+    margin:        0;
+    margin-bottom: 3px;
+	}
+	
+ul.mstw-bb-admin-instructions {
+    list-style:     disc;
+	/*font-style:     italic;
+	font-weight:    normal;
+    color:          #F00;*/
+	padding-left:   1.5em;
+    margin-bottom:  3px;
+	}
+
+
+form table#bracket-builder td {
+    vertical-align: top;
+	}
+	
+form table#bracket-builder th.right {
+    text-align: right;
+	}
+	
+form#edit-bracket table {
+    table-layout: auto;
+	}
+	
+input#edit-bracket-button {
+	margin-top: 20px;
+	}
+	
+select.sb-time-pulldown {
+	width: 50px;
+	}
+	
+table#bracket-builder tr.top-border {
+	border-top: 1px dashed black;
+	}
+	
+table#bracket-builder input.horizontal-boxes {
+	margin-left: 10px;
+	}
+	
+/* 
+ *   Edit Tournaments Screen 
+ */
+	
+table#edit-tourneys tr.header-top-row {
+	border-color: none;
+	}
+	
+table#edit-tourneys tr.header-top-row th.top-header {
+	text-align:   center;
+	border-color: red;
+	}
+	
+table#edit-tourneys tr.round-header {
+    background: lightgrey;
+    font-weight: bold;
+	}
+	
+table#edit-tourneys td.bame-nbr {
+    width: 6px;
+	}
+	
+table#edit-tourneys td.game-nbr,
+table#edit-tourneys td.time-is-tba {
+	text-align:  center;
+}
+
+table#edit-tourneys td.is-final {
+	text-align:  center;
+}
+
+
+	
+
+	
+
+	
