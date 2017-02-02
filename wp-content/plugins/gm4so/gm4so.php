@@ -57,14 +57,13 @@ function setLatLng($postID){
 	if($parent_id = wp_is_post_revision($postID)) {
 		$postID = $parent_id; 
 	} 
-	$address = get_post_meta($postID , 'address',true); 
-	if( $address ){ 
+	$lat = get_post_meta($postID , 'lat',true); 
+	$lng = get_post_meta($postID , 'lng',true); 
+
+	if( !$lat ){ 
 	$location = geocode($address); 
 		if ( !add_post_meta($postID, 'lat', $location['lat'], true) ) update_post_meta($postID,'lat', $location['lat'] ); 
 		if ( !add_post_meta($postID, 'lng', $location['lng'], true) ) update_post_meta($postID,'lng', $location['lng'] ); 
-	}else{ 
-		delete_post_meta($postID ,'lat'); 
-		delete_post_meta($postID ,'lnt'); 
 	} 
 }
 
