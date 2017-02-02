@@ -525,7 +525,7 @@ function init() {
 	// マップ表示
 	var map = new google.maps.Map(document.getElementById("map"), {
 	center: center,
-	zoom:15,
+	zoom:17,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
@@ -539,17 +539,17 @@ function init() {
 	// マーカーのドロップ（ドラッグ終了）時のイベント
 	google.maps.event.addListener( marker, 'dragend', function(ev){
 		// イベントの引数evの、プロパティ.latLngが緯度経度。
-		document.getElementByName('smart-custom-fields[lat][0]').value = ev.latLng.lat();
-		document.getElementByName('smart-custom-fields[lng][0]').value = ev.latLng.lng();
+		//document.getElementsByName("smart-custom-fields[lat][0]").value = ev.latLng.lat();
+		//document.getElementsByName("smart-custom-fields[lng][0]").value = ev.latLng.lng();
 
-		document.getElementById('latitude').value = ev.latLng.lat();
-		document.getElementById('longitude').value = ev.latLng.lng();
+		document.getElementById('acf-field_57809f75df6e6').value = ev.latLng.lat();
+		document.getElementById('acf-field_57809f85df6e7').value = ev.latLng.lng();
 
 	});
 }
 
 // ONLOADイベントにセット
-window.onload = init();
+//window.onload = init();
 
 
 </script>
@@ -598,9 +598,9 @@ function myplugin_meta_box_callback( $post ) {
 	$form = <<<EOL
 <form>
 	<label for="latitude">緯度</label>
-	<input type="text" id="latitude" size="20" />
+	<input type="text" name="smart-custom-fields[lat][0]" id="latitude" size="20" />
 	<label for="longitude">経度</label>
-	<input type="text" id="longitude" size="20" />
+	<input type="text" name="smart-custom-fields[lng][0]" id="longitude" size="20" />
 </form>
 <div id="map" style="width:480px;height:400px;"></div>
 EOL;
