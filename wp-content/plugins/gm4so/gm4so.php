@@ -595,20 +595,10 @@ function myplugin_meta_box_callback( $post ) {
 	 */
 	$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
 
-	$form = <<<EOL
-<form>
-	<label for="latitude">緯度</label>
-	<input type="text" name="smart-custom-fields[lat][0]" id="latitude" size="20" />
-	<label for="longitude">経度</label>
-	<input type="text" name="smart-custom-fields[lng][0]" id="longitude" size="20" />
-</form>
-<div id="map" style="width:480px;height:400px;"></div>
-EOL;
-
 	echo '<label for="myplugin_new_field">';
-	_e( 'Google Maps', 'myplugin_textdomain' );
+	_e( '', 'myplugin_textdomain' );
 	echo '</label> ';
-	echo $form;
+	echo '<div id="map" style="width:480px;height:400px;"></div>';
 }
 
 /**
