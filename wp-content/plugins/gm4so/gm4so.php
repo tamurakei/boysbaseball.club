@@ -511,6 +511,35 @@ function gm4so_print_scripts_admin(){
 function myplugin_add_meta_box() {
 
 	$screens = array( 'ground' );
+
+	foreach ( $screens as $screen ) {
+
+		add_meta_box(
+			'myplugin_sectionid',
+			__( 'My Post Section Title', 'myplugin_textdomain' ),
+			'myplugin_meta_box_callback',
+			$screen
+		);
+	}
+}
+add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
+
+/**
+ * Prints the box content.
+ * 
+ * @param WP_Post $post The object for the current post/page.
+ */
+function myplugin_meta_box_callback( $post ) {
+
+	// Add a nonce field so we can check for it later.
+	wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
+
+	/*
+	 * Use get_post_meta() to retrieve an existing value
+	 * from the database and use the value for the form.
+	 */
+	$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
+
 	$script = <<<EOL
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBeWWz9oBRexFwLJO0JDUFDQTibV_FrIR4"></script>
 <script type="text/javascript">
@@ -548,38 +577,10 @@ window.onload = init();
 </script>
 EOL;
 
-	foreach ( $screens as $screen ) {
-
-		add_meta_box(
-			'myplugin_sectionid',
-			__( $script, 'myplugin_textdomain' ),
-			'myplugin_meta_box_callback',
-			$screen
-		);
-	}
-}
-add_action( 'add_meta_boxes', 'myplugin_add_meta_box' );
-
-/**
- * Prints the box content.
- * 
- * @param WP_Post $post The object for the current post/page.
- */
-function myplugin_meta_box_callback( $post ) {
-
-	// Add a nonce field so we can check for it later.
-	wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
-
-	/*
-	 * Use get_post_meta() to retrieve an existing value
-	 * from the database and use the value for the form.
-	 */
-	$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
-
 	echo '<label for="myplugin_new_field">';
-	_e( 'Description for this field', 'myplugin_textdomain' );
+	_e( 'Google Maps', 'myplugin_textdomain' );
 	echo '</label> ';
-	echo '<input type="text" id="myplugin_new_field" name="myplugin_new_field" value="' . esc_attr( $value ) . '" size="25" />';
+	echo $script;
 }
 
 /**
