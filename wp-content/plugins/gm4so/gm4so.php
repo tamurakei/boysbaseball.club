@@ -516,6 +516,39 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //地図の中心
 var center = new google.maps.LatLng({$lat}, {$lng});
 
+function initialize() {
+	directionsDisplay = new google.maps.DirectionsRenderer();
+
+	//オプションの定義
+	var myOptions = {
+		zoom: zoom,
+		center: center,
+		mapTypeId: mapTypeId,
+	}
+
+	//地図の表示
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    directionsDisplay.setMap(map);
+
+    //◆現在地マーカー
+    var marker = new google.maps.Marker({
+		map: map,
+		position: center,  //マーカ位置
+		//icon: icon,
+		//animation: google.maps.Animation.DROP,
+		title: '{$title}'
+		draggable: true	// ドラッグ可能にする
+    });
+    marker.setMap(map)	;
+
+    //◆情報ウインドウ
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+	infowindow.open(map,marker);
+
+}
+
 // ページ読み込み完了時に実行する関数
 function init() {
 
@@ -546,7 +579,7 @@ function init() {
 }
 
 // ONLOADイベントにセット
-window.onload = init();
+window.onload = initialize();
 
 
 </script>
