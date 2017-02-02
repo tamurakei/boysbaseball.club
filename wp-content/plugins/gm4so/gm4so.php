@@ -497,6 +497,20 @@ function gm4so_print_scripts(){
  * @author Kei Tamura
  */
 function gm4so_print_scripts_admin(){
+
+	if( is_admin() ){
+		echo $script;
+	}
+}
+//add_action( 'wp_footer', 'gm4so_print_scripts_admin' );
+
+
+/**
+ * Adds a box to the main column on the Post and Page edit screens.
+ */
+function myplugin_add_meta_box() {
+
+	$screens = array( 'ground' );
 	$script = <<<EOL
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBeWWz9oBRexFwLJO0JDUFDQTibV_FrIR4"></script>
 <script type="text/javascript">
@@ -533,25 +547,12 @@ function init() {
 window.onload = init();
 </script>
 EOL;
-	if( is_admin() ){
-		echo $script;
-	}
-}
-//add_action( 'wp_footer', 'gm4so_print_scripts_admin' );
-
-
-/**
- * Adds a box to the main column on the Post and Page edit screens.
- */
-function myplugin_add_meta_box() {
-
-	$screens = array( 'ground' );
 
 	foreach ( $screens as $screen ) {
 
 		add_meta_box(
 			'myplugin_sectionid',
-			__( 'My Post Section Title', 'myplugin_textdomain' ),
+			__( $script, 'myplugin_textdomain' ),
 			'myplugin_meta_box_callback',
 			$screen
 		);
