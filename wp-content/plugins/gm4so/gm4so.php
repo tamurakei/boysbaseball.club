@@ -154,7 +154,7 @@ function displayClosestStation($content) {
 
 function displayClosestshopss($content)
 {
-	if( is_single($post) && get_post_type($post) === 'shops' )
+	if( is_single($post) && get_post_type($post) === 'ground' )
 	{
 		global $post,$wpdb;
 		$lat = get_post_meta($post->ID , 'lat' , true);
@@ -203,7 +203,7 @@ add_action( 'wp_footer', 'gmapArchive' );
 
 function gmapArchive() {
 	global $query_string;
-	if( is_post_type_archive( 'shops' ) ) {
+	if( is_post_type_archive( 'ground' ) ) {
 		$args = $query_string . '&posts_per_page=-1' ;
 		$the_query = new WP_Query( $args );
 		$latArray = array();
@@ -335,8 +335,8 @@ function displayMapSingle( $content )
 
 function gmap_api_script()
 {
-	if( is_admin() )
-		return false;
+	//if( is_admin() )
+	//	return false;
 
 	global $post;
 
