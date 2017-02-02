@@ -541,7 +541,8 @@ function myplugin_meta_box_callback( $post ) {
 	$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
 
 	$script = <<<EOL
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBeWWz9oBRexFwLJO0JDUFDQTibV_FrIR4"></script>
+<script type="text/javascript"
+　src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeWWz9oBRexFwLJO0JDUFDQTibV_FrIR4&sensor=false"></script>
 <script type="text/javascript">
 // ページ読み込み完了時に実行する関数
 function init() {
