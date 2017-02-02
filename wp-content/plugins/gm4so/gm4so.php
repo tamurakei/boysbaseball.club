@@ -541,6 +541,10 @@ function init() {
 		// イベントの引数evの、プロパティ.latLngが緯度経度。
 		document.getElementByName('smart-custom-fields[lat][0]').value = ev.latLng.lat();
 		document.getElementByName('smart-custom-fields[lng][0]').value = ev.latLng.lng();
+
+		document.getElementById('lat').value = ev.latLng.lat();
+		document.getElementById('lng').value = ev.latLng.lng();
+
 	});
 }
 
@@ -591,15 +595,20 @@ function myplugin_meta_box_callback( $post ) {
 	 */
 	$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
 
-	$map = <<<EOL
-
+	$form = <<<EOL
+<form>
+	<label for="latitude">緯度</label>
+	<input type="text" id="lat" size="20" />
+	<label for="longitude">経度</label>
+	<input type="text" id="lng" size="20" />
+</form>
 <div id="map" style="width:480px;height:400px;"></div>
 EOL;
 
 	echo '<label for="myplugin_new_field">';
-	_e( '', 'myplugin_textdomain' );
+	_e( 'Google Maps', 'myplugin_textdomain' );
 	echo '</label> ';
-	echo $map;
+	echo $form;
 }
 
 /**
