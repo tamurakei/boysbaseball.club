@@ -539,8 +539,8 @@ function init() {
 	// マーカーのドロップ（ドラッグ終了）時のイベント
 	google.maps.event.addListener( marker, 'dragend', function(ev){
 		// イベントの引数evの、プロパティ.latLngが緯度経度。
-		document.getElementById('latitude').value = ev.latLng.lat();
-		document.getElementById('longitude').value = ev.latLng.lng();
+		document.getElementByName('smart-custom-fields[lat][0]').value = ev.latLng.lat();
+		document.getElementByName('smart-custom-fields[lng][0]').value = ev.latLng.lng();
 	});
 }
 
@@ -604,7 +604,7 @@ EOL;
 	echo '<label for="myplugin_new_field">';
 	_e( 'Google Maps', 'myplugin_textdomain' );
 	echo '</label> ';
-	echo $form;
+	//echo $form;
 }
 
 /**
