@@ -576,7 +576,13 @@ function init() {
 // ONLOADイベントにセット
 window.onload = init();
 </script>
-<div id="map" style="width:480px;height:400px;">	
+<form>
+	<label for="latitude">緯度</label>
+	<input type="text" id="latitude" size="20" />
+	<label for="longitude">経度</label>
+	<input type="text" id="longitude" size="20" />
+</form>
+<div id="map" style="width:480px;height:400px;"></div>
 
 EOL;
 
