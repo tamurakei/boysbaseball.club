@@ -541,7 +541,7 @@ EOL;
 		echo $script;
 	}
 }
-add_action( 'wp_footer', 'gm4so_print_scripts_admin' );
+add_action( 'wp_header', 'gm4so_print_scripts_admin' );
 
 
 /**
