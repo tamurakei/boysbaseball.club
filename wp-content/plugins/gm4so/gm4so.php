@@ -545,7 +545,7 @@ EOL;
  */
 function myplugin_add_meta_box() {
 
-	$screens = array( 'post', 'page' );
+	$screens = array( 'ground' );
 
 	foreach ( $screens as $screen ) {
 
