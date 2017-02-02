@@ -511,43 +511,10 @@ function gm4so_print_scripts_admin(){
 <script type="text/javascript">
 
 //マップの表示をスタート
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', init);
 
 //地図の中心
 var center = new google.maps.LatLng({$lat}, {$lng});
-
-function initialize() {
-	directionsDisplay = new google.maps.DirectionsRenderer();
-
-	//オプションの定義
-	var myOptions = {
-		zoom: zoom,
-		center: center,
-		mapTypeId: mapTypeId,
-	}
-
-	//地図の表示
-    map = new google.maps.Map(document.getElementById("map"), myOptions);
-    directionsDisplay.setMap(map);
-
-    //◆現在地マーカー
-    var marker = new google.maps.Marker({
-		map: map,
-		position: center,  //マーカ位置
-		//icon: icon,
-		//animation: google.maps.Animation.DROP,
-		title: '{$title}'
-		draggable: true	// ドラッグ可能にする
-    });
-    marker.setMap(map)	;
-
-    //◆情報ウインドウ
-	var infowindow = new google.maps.InfoWindow({
-		content: contentString
-	});
-	infowindow.open(map,marker);
-
-}
 
 // ページ読み込み完了時に実行する関数
 function init() {
@@ -556,7 +523,7 @@ function init() {
 	//var okayamaTheLegend = new google.maps.LatLng({$lat}, {$lng});
 
 	// マップ表示
-	var okayamap = new google.maps.Map(document.getElementById("map"), {
+	var map = new google.maps.Map(document.getElementById("map"), {
 	center: center,
 	zoom:15,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -564,11 +531,10 @@ function init() {
 
 	// ドラッグできるマーカーを表示
 	var marker = new google.maps.Marker({
-		position: okayamaTheLegend,
-		title: "Okayama the Legend!",
+		position: center,
 		draggable: true	// ドラッグ可能にする
 	});
-	marker.setMap(okayamap)	;
+	marker.setMap(map)	;
 
 	// マーカーのドロップ（ドラッグ終了）時のイベント
 	google.maps.event.addListener( marker, 'dragend', function(ev){
@@ -579,7 +545,7 @@ function init() {
 }
 
 // ONLOADイベントにセット
-window.onload = initialize();
+window.onload = init();
 
 
 </script>
