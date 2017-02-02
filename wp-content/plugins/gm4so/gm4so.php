@@ -542,8 +542,8 @@ function init() {
 		document.getElementByName('smart-custom-fields[lat][0]').value = ev.latLng.lat();
 		document.getElementByName('smart-custom-fields[lng][0]').value = ev.latLng.lng();
 
-		document.getElementById('lat').value = ev.latLng.lat();
-		document.getElementById('lng').value = ev.latLng.lng();
+		document.getElementById('latitude').value = ev.latLng.lat();
+		document.getElementById('longitude').value = ev.latLng.lng();
 
 	});
 }
@@ -598,9 +598,9 @@ function myplugin_meta_box_callback( $post ) {
 	$form = <<<EOL
 <form>
 	<label for="latitude">緯度</label>
-	<input type="text" id="lat" size="20" />
+	<input type="text" id="latitude" size="20" />
 	<label for="longitude">経度</label>
-	<input type="text" id="lng" size="20" />
+	<input type="text" id="longitude" size="20" />
 </form>
 <div id="map" style="width:480px;height:400px;"></div>
 EOL;
