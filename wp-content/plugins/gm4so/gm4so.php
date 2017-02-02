@@ -56,7 +56,8 @@ function setLatLng($postID){
 
 	if($parent_id = wp_is_post_revision($postID)) {
 		$postID = $parent_id; 
-	} 
+	}
+	$address = get_post_meta($postID , 'address',true); 
 	$lat = get_post_meta($postID , 'lat',true); 
 	$lng = get_post_meta($postID , 'lng',true); 
 
