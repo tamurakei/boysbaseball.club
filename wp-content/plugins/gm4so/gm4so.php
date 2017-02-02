@@ -499,10 +499,49 @@ function gm4so_print_scripts(){
 function gm4so_print_scripts_admin(){
 
 	if( is_admin() ){
+
+		$script = <<<EOL
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBeWWz9oBRexFwLJO0JDUFDQTibV_FrIR4"></script>
+<script type="text/javascript">
+
+// ページ読み込み完了時に実行する関数
+function init() {
+
+	// 初期位置
+	var okayamaTheLegend = new google.maps.LatLng(34.666358, 133.918576);
+
+	// マップ表示
+	var okayamap = new google.maps.Map(document.getElementById("map"), {
+		center: okayamaTheLegend,
+		zoom:13,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	// ドラッグできるマーカーを表示
+	var marker = new google.maps.Marker({
+		position: okayamaTheLegend,
+		title: "Okayama the Legend!",
+		draggable: true	// ドラッグ可能にする
+	});
+	marker.setMap(okayamap)	;
+
+	// マーカーのドロップ（ドラッグ終了）時のイベント
+	google.maps.event.addListener( marker, 'dragend', function(ev){
+		// イベントの引数evの、プロパティ.latLngが緯度経度。
+		document.getElementById('latitude').value = ev.latLng.lat();
+		document.getElementById('longitude').value = ev.latLng.lng();
+	});
+}
+
+// ONLOADイベントにセット
+window.onload = init();
+</script>
+
+EOL;
 		echo $script;
 	}
 }
-//add_action( 'wp_footer', 'gm4so_print_scripts_admin' );
+add_action( 'wp_footer', 'gm4so_print_scripts_admin' );
 
 
 /**
@@ -540,42 +579,7 @@ function myplugin_meta_box_callback( $post ) {
 	 */
 	$value = get_post_meta( $post->ID, '_my_meta_value_key', true );
 
-	$script = <<<EOL
-<script type="text/javascript"
-　src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeWWz9oBRexFwLJO0JDUFDQTibV_FrIR4&sensor=false"></script>
-<script type="text/javascript">
-// ページ読み込み完了時に実行する関数
-function init() {
-
-	// 初期位置
-	var okayamaTheLegend = new google.maps.LatLng(34.666358, 133.918576);
-
-	// マップ表示
-	var okayamap = new google.maps.Map(document.getElementById("map"), {
-		center: okayamaTheLegend,
-		zoom:13,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
-
-	// ドラッグできるマーカーを表示
-	var marker = new google.maps.Marker({
-		position: okayamaTheLegend,
-		title: "Okayama the Legend!",
-		draggable: true	// ドラッグ可能にする
-	});
-	marker.setMap(okayamap)	;
-
-	// マーカーのドロップ（ドラッグ終了）時のイベント
-	google.maps.event.addListener( marker, 'dragend', function(ev){
-		// イベントの引数evの、プロパティ.latLngが緯度経度。
-		document.getElementById('latitude').value = ev.latLng.lat();
-		document.getElementById('longitude').value = ev.latLng.lng();
-	});
-}
-
-// ONLOADイベントにセット
-window.onload = init();
-</script>
+	$form = <<<EOL
 <form>
 	<label for="latitude">緯度</label>
 	<input type="text" id="latitude" size="20" />
@@ -583,13 +587,12 @@ window.onload = init();
 	<input type="text" id="longitude" size="20" />
 </form>
 <div id="map" style="width:480px;height:400px;"></div>
-
 EOL;
 
 	echo '<label for="myplugin_new_field">';
 	_e( 'Google Maps', 'myplugin_textdomain' );
 	echo '</label> ';
-	echo $script;
+	echo $form;
 }
 
 /**
