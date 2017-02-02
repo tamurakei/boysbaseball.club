@@ -501,7 +501,7 @@ function gm4so_print_scripts_admin(){
 	$script = <<<EOL
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBeWWz9oBRexFwLJO0JDUFDQTibV_FrIR4"></script>
 <script type="text/javascript">
-
+document.addEventListener( 'DOMContentLoaded', function() {
 // ページ読み込み完了時に実行する関数
 function init() {
 
@@ -530,7 +530,7 @@ function init() {
 		document.getElementById('longitude').value = ev.latLng.lng();
 	});
 }
-
+}
 // ONLOADイベントにセット
 window.onload = init();
 </script>
