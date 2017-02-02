@@ -575,6 +575,8 @@ function init() {
 // ONLOADイベントにセット
 window.onload = init();
 </script>
+<div id="map" style="width:480px;height:400px;">	
+
 EOL;
 
 	echo '<label for="myplugin_new_field">';
