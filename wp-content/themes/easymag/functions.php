@@ -316,3 +316,17 @@ function easymag_post_img( $num ) {
 		echo '<img src="' . get_template_directory_uri() . '/images/no-image.png" alt="No Image"/>';
 	}
 }
+
+/**
+ * jquery を一旦解除して、google CDN からフッターで読み込む
+ */ 
+function load_google_cdn() {
+  if ( !is_admin() ){
+    //jQueryを登録解除
+    wp_deregister_script( 'jquery' );
+    
+    //Google CDNのjQueryを出力
+    wp_enqueue_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array(), NULL, false );
+  }
+}
+add_action( 'init', 'load_google_cdn' );
