@@ -330,3 +330,11 @@ function load_google_cdn() {
   }
 }
 add_action( 'init', 'load_google_cdn' );
+
+function addasync_enqueue_script( $tag, $handle ) {
+    if ( 'jquery' !== $handle ) {
+        return $tag;
+    }
+    return str_replace( ' src', ' async="async" src', $tag );
+}
+add_filter( 'script_loader_tag', 'addasync_enqueue_script', 10. 2 );
