@@ -326,7 +326,7 @@ function load_google_cdn() {
     wp_deregister_script( 'jquery' );
     
     //Google CDNのjQueryを出力
-    wp_enqueue_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array(), NULL, false );
+    wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array(), NULL, true );
   }
 }
 add_action( 'init', 'load_google_cdn' );
