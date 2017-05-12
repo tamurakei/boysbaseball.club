@@ -47,8 +47,12 @@ class KUSANAGI_Page_Cache {
 		} elseif ( $version < 2 ) {
 			$this->update_cache_table( 2 );
 			$this->update_cache_table( 3 );
+			$this->update_cache_table( 4 );
 		} elseif ( $version < 3 ) {
 			$this->update_cache_table( 3 );
+			$this->update_cache_table( 4 );
+		} elseif ( $version < 4 ) {
+			$this->update_cache_table( 4 );
 		}
 	}
 
@@ -75,7 +79,7 @@ CREATE TABLE `{$cache_db->prefix}site_cache` (
  `hash` varchar(32) NOT NULL,
  `content` longtext NOT NULL,
  `device_url` text NOT NULL,
- `type` varchar(10) NOT NULL,
+ `type` varchar(20) NOT NULL,
  `post_type` varchar(200) NOT NULL,
  `headers` text NOT NULL,
  `user_agent` text NOT NULL,
@@ -122,6 +126,13 @@ ADD INDEX	( `updating` )";
 				$cache_db->query( $sql );
 				update_option( 'site_manager_cache_installed', 3 );
 				$this->generate_advanced_cache_file();
+				break;
+			case 4 :
+				$sql = "
+ALTER TABLE `{$cache_db->prefix}site_cache`
+MODIFY		`type` VARCHAR( 20 )";
+				$cache_db->query( $sql );
+				update_option( 'site_manager_cache_installed', 4 );
 				break;
 			default :
 		}
@@ -562,22 +573,6 @@ WHERE	`hash` = '$hash'
 			}
 		}
 		
-		header( 'X-B-Cache: create' );
-		$header_arr = array();
-		$headers = headers_list();
-		foreach ( $headers as $header ) {
-			list( $key, $val ) = explode( ': ', $header, 2 );
-			if ( 'Location' == $key ) {
-				return $buffer;
-			}
-			if ( $key == 'Vary' && strpos( $val, 'Cookie' ) === false ) {
-				$val .= ',Cookie';
-			}
-			if ( $key != 'Set-Cookie' ) {
-				$header_arr[$key] = $val;
-			}
-		}
-
 		if ( is_front_page() ) {
 			$type = 'front';
 			$post_type = 'page';
@@ -632,10 +627,40 @@ WHERE	`hash` = '$hash'
 			$post_type = 'post';
 			$type = 'single';
 			$life_time_key = 'singular';
+		} elseif ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			$type = 'rest_api';
+			$post_type = 'rest_api';
+			$life_time_key = 'archive';
+		} else {
+			header( 'X-B-Cache: none' );
+			return $buffer;
 		}
 		
+		header( 'X-B-Cache: create' );
+		$header_arr = array();
+		$headers = headers_list();
+		foreach ( $headers as $header ) {
+			list( $key, $val ) = explode( ': ', $header, 2 );
+			if ( 'location' == strtolower( $key ) ) {
+				return $buffer;
+			}
+			if ( $key == 'Vary' && strpos( $val, 'Cookie' ) === false ) {
+				$val .= ',Cookie';
+			}
+			if ( $key != 'Set-Cookie' ) {
+				$header_arr[$key] = $val;
+			}
+		}
+
 		$expire = apply_filters( 'site_cache_expire_time', $life_time[$life_time_key] * 60, $life_time_key );
-		$cache = $buffer . "\n" . '<!-- page cached by KUSANAGI. Cache created : ' . date( 'H:i:s' ) . '(GMT). Expire : ' . date( 'H:i:s', time() + $expire ) . '(GMT). -->';
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			$cache = $buffer;
+			$cache = json_decode( $cache, true );
+			$cache['x-cached'] = '<!-- page cached by WP SiteManager. ' . date( 'H:i:s' ) . '(GMT). Expire : ' . date( 'H:i:s', time() + $expire ) . '(GMT). -->';
+			$cache = json_encode( $cache );
+		} else {
+			$cache = $buffer . "\n" . '<!-- page cached by KUSANAGI. Cache created : ' . date( 'H:i:s' ) . '(GMT). Expire : ' . date( 'H:i:s', time() + $expire ) . '(GMT). -->';
+		}
 
 		$server = defined( 'CACHE_SERVER' ) ? CACHE_SERVER : '';
 		$data = array(
