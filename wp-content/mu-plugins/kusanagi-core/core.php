@@ -12,7 +12,7 @@ class WP_KUSANAGI {
 	public  $module_files = array();
 
 	public function __construct( $file ) {
-		$this->version = '1.0.5';
+		$this->version = '1.0.8';
 		$this->modules_dir   = __DIR__ . '/modules';
 		$this->templates_dir = __DIR__ . '/templates';
 		$files = array(
@@ -20,6 +20,7 @@ class WP_KUSANAGI {
 			'theme-switcher.php',
 			'translate-accelerator.php',
 			'performance-viewer.php',
+			'image-optimizer.php',
 		);
 
 		foreach ( $files as $file ) {

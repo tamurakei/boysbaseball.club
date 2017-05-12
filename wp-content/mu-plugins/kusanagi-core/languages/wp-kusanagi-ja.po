@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP KUSANAGI\n"
 "POT-Creation-Date: 2015-12-03 19:32+0900\n"
-"PO-Revision-Date: 2015-12-03 19:32+0900\n"
+"PO-Revision-Date: 2016-04-22 19:46+0900\n"
 "Last-Translator: Hitoshi Omagari <hitoshi@prime-strategy.co.jp>\n"
 "Language-Team: Prime Strategy Co.,LTD. <ps@prime-strategy.co.jp>\n"
 "Language: japanese\n"
@@ -344,14 +344,29 @@ msgstr "デバイス"
 msgid "Keywords"
 msgstr "キーワード"
 
-#~ msgid ""
-#~ "Cache is not valid. In order to make it valid, you need to write as "
-#~ "<code>define ('WP_CACHE', true);</code> above the description that \"You "
-#~ "need to edit up to here ...!\" of wp-config.php."
-#~ msgstr ""
-#~ "キャッシュは有効になっていません。有効にするためには、wp-config.phpの「編"
-#~ "集が必要なのはここまでです !…」という記述より上に<code>define"
-#~ "( 'WP_CACHE', true );</code>と記述する必要があります。"
+#: kusanagi-core/modules/image-optimizer.php:70
+#: kusanagi-core/templates/tab-image-optimizer.php:2
+msgid "Image Optimizer"
+msgstr "画像最適化"
 
-#~ msgid "Cache type"
-#~ msgstr "キャッシュタイプ"
+#: kusanagi-core/modules/image-optimizer.php:127
+#: kusanagi-core/modules/image-optimizer.php:131
+#: kusanagi-core/modules/image-optimizer.php:137
+msgid "Resize path invalid"
+msgstr "画像のパスが正しくありません"
+
+#: kusanagi-core/templates/tab-image-optimizer.php:5
+msgid "Enable Image Optimize"
+msgstr "画像最適化を有効にする"
+
+#: kusanagi-core/templates/tab-image-optimizer.php:14
+msgid "Jpeg quality"
+msgstr "JPEG画質"
+
+#: kusanagi-core/templates/tab-image-optimizer.php:20
+msgid "Max full image widh"
+msgstr "フルサイズ画像最大幅"
+
+#: kusanagi-core/templates/tab-image-optimizer.php:22
+msgid "* larger than 320px"
+msgstr "* 320px以上"

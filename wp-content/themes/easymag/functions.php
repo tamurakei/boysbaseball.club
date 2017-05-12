@@ -126,7 +126,7 @@ function easymag_scripts() {
 	wp_enqueue_style( 'swiper', get_template_directory_uri() . '/css/swiper.min.css', array(), '3.2.5', '' );
 
 	// Enqueue Google fonts
-	wp_enqueue_style( 'easymag-roboto', '//fonts.googleapis.com/css?family=Roboto:400,300,500,700,900' );
+	//wp_enqueue_style( 'easymag-roboto', '//fonts.googleapis.com/css?family=Roboto:400,300,500,700,900' );
 
 	// Stylesheet
 	wp_enqueue_style( 'easymag-style', get_stylesheet_uri() );

@@ -47,7 +47,9 @@ class SiteManagerAdvancedCache {
 		case 'directory' :
 			$key = '/';
 			if ( trim( $_SERVER['REQUEST_URI'], '/' ) ) {
-				$key .= array_shift( explode( '/', trim( $_SERVER['REQUEST_URI'], '/' ), 2 ) ) . '/';
+				$dirs = explode( '/', trim( $_SERVER['REQUEST_URI'], '/' ), 2 );
+				$key .= array_shift( $dirs ) . '/';
+				unset( $dirs );
 			}
 			$add_prefix = isset( $this->sites[$key] ) && $this->sites[$key] != 1 ? $this->sites[$key] . '_' : '';
 			$site_id = isset( $this->sites[$key] ) ? $this->sites[$key] : BLOG_ID_CURRENT_SITE;
@@ -174,8 +176,14 @@ AND     `expire_time` = '{$row->expire_time}'
 						require_once( $this->replace_class_file );
 						$row->content = KUSANAGI_Replace::replace( $row->content );
 					}
-					echo $row->content;
-					echo "\n" .'<!-- CacheID : ' . $row->hash . ' -->';   
+
+					if ( 'rest_api' == $row->type ) {
+						header( 'X-cache-ID: ' . $row->hash );
+						echo $row->content;
+					} else {
+						echo $row->content;
+						echo "\n" .'<!-- CacheID : ' . $row->hash . ' -->';   
+					}
 					exit;
 				}
 			}
