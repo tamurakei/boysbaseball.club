@@ -9,7 +9,7 @@ Author URI: http://www.shikumilab.jp
 */
 
 function change_http_to_https ( $content ) {
-	str_replace("http://","https://",$content);
+	$content = str_replace("http://","https://",$content);
 	return $content ;
 }
 add_filter( 'the_content', 'change_http_to_https' );
